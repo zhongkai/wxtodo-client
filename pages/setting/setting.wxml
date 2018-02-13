@@ -1,0 +1,16 @@
+<view class="container">
+  <view class="title">待办</view>
+  <view class="section">
+    <text>允许全选：</text>
+    <switch checked="{{ allSetting }}" data-setting="allSetting" bindchange="toggleSetting"/>
+  </view>
+  <view class="section">
+    <text>允许清空所有已完成：</text>
+    <switch checked="{{ clearSetting }}" data-setting="clearSetting" bindchange="toggleSetting"/>
+  </view>
+  <view class="title">历史</view>
+  <view class="section">
+    <text>显示操作时间：</text>
+    <switch checked="{{ timeSetting }}" data-setting="timeSetting" bindchange="toggleSetting"/>
+  </view>
+</view>

@@ -1,0 +1,16 @@
+<!--components/Item/Item.wxml-->
+<view class="item{{ action ? '' : (finished ? ' finished' : '') }}">
+  <icon class="checkbox" type="{{ finished ? 'success' : 'circle' }}" wx:if="{{ !action }}" />
+  <block wx:if="{{ tags.length }}">
+    <view class="content-tags">
+      <text class="content">{{ content }}</text>
+      <view class="tags">
+        <text class="tag" wx:for="{{ tags }}" wx:key="{{ index }}">{{ item }}</text>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <text class="content">{{ content }}</text>
+  </block>
+  <icon class="remove" type="clear" size="16" catchtap="removeTodo" data-index="{{ index }}" />
+</view>

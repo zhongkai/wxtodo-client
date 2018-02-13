@@ -1,0 +1,35 @@
+/* pages/me/me.wxss */
+.avatar {
+  display: flex;
+  justify-content:center;
+  margin-top: 60rpx;
+}
+
+.avatar image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 100rpx;
+}
+
+.name {
+  text-align: center;
+  color: #9B9B9B;
+  font-size: 40rpx;
+  margin: 10rpx 0 60rpx;
+}
+
+.item {
+  display: flex;
+  color: #9B9B9B;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #DDD;
+  font-size: 36rpx;
+}
+
+.item text:first-child {
+  flex: 1;
+}
+
+.item text:last-child {
+  width: 50rpx;
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "2dos · 历史",
+  "usingComponents": {
+    "item": "/components/Item/Item"
+  }
+}

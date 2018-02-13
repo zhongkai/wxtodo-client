@@ -1,0 +1,26 @@
+.section {
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #DDD;
+  color: #9B9B9B;
+  font-size: 30rpx;
+  align-items: center;
+}
+
+.section text {
+  flex: 1;
+}
+
+.section input {
+  width: 400rpx;
+  text-align: right;
+}
+
+.section image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+button {
+  margin-top: 400rpx;
+}
