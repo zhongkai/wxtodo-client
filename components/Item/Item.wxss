@@ -1,0 +1,65 @@
+/* components/Item/Item.wxss */
+
+.item-container {
+  padding: 25rpx;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.item:last-child {
+  border-bottom: 0;
+}
+
+.item .checkbox {
+  margin-right: 20rpx;
+}
+
+.item .content {
+  flex: 1;
+  font-size: 30rpx;
+  color: #9B9B9B;
+}
+
+.item icon {
+  margin-left: 10rpx;
+}
+
+.item.finished .content {
+  text-decoration: line-through;
+  color: #DDD;
+}
+
+.item .content-tags {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.item .tags {
+  display: flex;
+  height: 28rpx;
+}
+
+.item .tag { 
+  margin-right: 10rpx;
+  color: #7ED321;
+  font-size: 20rpx;
+  text-align: center;
+}
+
+.item.finished .tag {
+  color: #DDD;
+}
+
+.extra-detail {
+  padding: 15rpx 5px 0;
+  font-size: 28rpx;
+  color: #9B9B9B;
+}
+
+.extra-detail textarea {
+  width: 650rpx;
+}

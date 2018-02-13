@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "wxtodo · 历史",
+  "usingComponents": {
+    "item": "/components/Item/Item"
+  }
+}

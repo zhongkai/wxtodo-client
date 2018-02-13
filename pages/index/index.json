@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "wxtodo · 待办",
+  "usingComponents": {
+    "item": "/components/Item/Item"
+  }
+}

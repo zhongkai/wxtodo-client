@@ -1,0 +1,76 @@
+.history-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #DDD;
+}
+
+.date {
+  font-size: 30rpx;
+  border-left: 10rpx solid #7ED321;
+  padding-left: 10rpx;
+  margin-top: 30rpx;
+  font-weight: bold;
+}
+
+.action-icon {
+  width: 100rpx;
+  font-size: 30rpx
+}
+
+.action-icon.create, .action-icon.restart {
+  color: #7ED321;
+}
+
+.action-icon.delete, .action-icon.finish {
+  color: #9B9B9B;
+}
+
+.action-with-time {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-with-time .action-icon {
+  flex: 1;
+}
+
+.action-with-time .time {
+  height: 30rpx;
+  font-size: 28rpx;
+  color: #9B9B9B;
+}
+
+.todo {
+  flex: 1;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty .title {
+  font-size: 60rpx;
+  margin: 200rpx 50rpx 50rpx;
+  color: #9B9B9B;
+}
+
+.empty .content {
+  color: #DDD;
+  text-align: center;
+}
+
+.action {
+  font-size: 30rpx;
+  padding: 20rpx 0;
+}
+
+.action.clear, .action.finishAll {
+  color: #9B9B9B;
+}
+
+.action.restartAll {
+  color: #7ED321;
+}

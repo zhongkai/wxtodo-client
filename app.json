@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/me/me",
+    "pages/history/history",
+    "pages/detail/detail",
+    "pages/user/user",
+    "pages/setting/setting"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#7ED321",
+    "navigationBarTitleText": "wxtodo",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#9B9B9B",
+    "selectedColor": "#7ED321",
+    "backgroundColor": "#F8F8F8",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "待办",
+        "iconPath": "assets/todo.png",
+        "selectedIconPath": "assets/todo-active.png"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "历史",
+        "iconPath": "assets/history.png",
+        "selectedIconPath": "assets/history-active.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我",
+        "iconPath": "assets/me.png",
+        "selectedIconPath": "assets/me-active.png"
+      }
+    ]
+  }
+}
