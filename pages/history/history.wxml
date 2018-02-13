@@ -1,0 +1,33 @@
+<view class="container">
+  <block wx:if="{{ dates.length }}">
+    <block wx:for="{{ dates }}" wx:key="index">
+      <view class="date">{{ item }}</view>
+      <block wx:for="{{ groupedHistory[item] }}" wx:key="index">
+        <view class="history-item">
+          <block wx:if="{{ item.action == 'create' || item.action == 'finish' || item.action == 'restart' || item.action == 'delete' }}">
+            <block wx:if="{{ timeSetting }}">
+              <view class="action-with-time">
+                <view class="action-icon {{ item.action }}">{{ actionTexts[item.action] }}</view>
+                <view class="time">{{ item.time }}</view>
+              </view>
+            </block>
+            <block wx:else>
+              <view class="action-icon {{ item.action }}">{{ actionTexts[item.action] }}</view>
+            </block>
+            <item class="todo" content="{{ item.todo.content }}" tags="{{ item.todo.tags }}" action="{{ item.action }}" data-pos="{{ item.pos }}" binditemremove="onItemRemove">
+            </item>
+          </block>
+          <block wx:else>
+            <view class="action {{ item.action }}">{{ actionTexts[item.action] }}</view>
+          </block>
+        </view>
+      </block>
+    </block>
+  </block>
+  <block wx:else>
+    <view class="empty">
+      <text class="title">暂无历史数据</text>
+      <text class="content">请您前往「待办」添加待办事项</text>
+    </view>
+  </block>
+</view>

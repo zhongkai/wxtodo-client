@@ -1,0 +1,46 @@
+.section {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #DDD;
+  font-size: 30rpx;
+  color: #9B9B9B;
+}
+
+.section textarea {
+  width: 670rpx;
+  padding: 25rpx 20rpx;
+  background: #EEE;
+}
+
+.tags {
+  display: flex;
+  padding-top: 20rpx;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  width: 180rpx;
+  height: 60rpx;
+  padding: 10rpx 20rpx;
+  font-size: 30rpx;
+  color: #9B9B9B;
+  border: 1rpx solid #7ED321;
+  margin-right: 20rpx;
+}
+
+.tag:last-child {
+  margin-right: 0;
+}
+
+.tag .txt {
+  flex: 1;
+}
+
+.tag .remove {
+  width: 30rpx;
+}
+
+button {
+  font-size: 40rpx;
+  margin-top: 60rpx;
+}
