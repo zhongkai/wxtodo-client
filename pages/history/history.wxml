@@ -14,10 +14,10 @@
             <block wx:else>
               <view class="action-icon {{ item.action }}">{{ actionTexts[item.action] }}</view>
             </block>
-            <item class="todo" content="{{ item.todo.content }}" tags="{{ item.todo.tags }}" action="{{ item.action }}" data-pos="{{ item.pos }}" bind:itemremove="onItemRemove"/>
+            <item class="todo" content="{{ item.todo.content }}" tags="{{ item.todo.tags }}" action="{{ item.action }}" data-pos="{{ item.pos }}" binditemremove="onItemRemove"/>
           </block>
           <block wx:else>
-            <view class="action">{{ actionTexts[item.action] }}</view>
+            <view class="action {{ item.action }}">{{ actionTexts[item.action] }}</view>
           </block>
         </view>
       </block>

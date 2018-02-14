@@ -5,7 +5,7 @@ Page({
     name: ''
   },
 
-  onLoad: function () {
+  onShow: function () {
 
     this.setData({
       avatar: wx.getStorageSync('avatar') || 'https://yunlaiwu0.cn-bj.ufileos.com/teacher_avatar.png',

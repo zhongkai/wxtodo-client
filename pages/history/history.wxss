@@ -61,3 +61,16 @@
   color: #DDD;
   text-align: center;
 }
+
+.action {
+  font-size: 30rpx;
+  padding: 20rpx 0;
+}
+
+.action.clear, .action.finishAll {
+  color: #9B9B9B;
+}
+
+.action.restartAll {
+  color: #7ED321;
+}

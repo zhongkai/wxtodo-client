@@ -7,7 +7,7 @@ Page({
       'delete': '删除',
       'clear': '清空所有待办事项',
       'restartAll': '重启所有待办事项',
-      'finishAll': '重启所有待办事项'
+      'finishAll': '完成所有待办事项'
     },
     timeSetting: false
   },
@@ -57,8 +57,6 @@ Page({
       prev[cur.date].push(cur);
       return prev;
     }, {});
-
-    console.info(groupedHistory);
 
     this.setData({
       groupedHistory: groupedHistory,

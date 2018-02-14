@@ -15,9 +15,9 @@
       </block>
     </view>
     <view class="footer">
-      <text class="btn" bindtap="toggleAll"  wx:if="{{ allSetting }}">全选</text>
+      <text class="btn" bindtap="toggleAll"  wx:if="{{ allSetting }}">{{ allFinished ? '全部重启' : '全部完成' }}</text>
       <text wx:if="{{ leftCount }}">{{ leftCount }}项未完成</text>
-      <text class="btn" wx:if="{{ todos.length > leftCount }}" bindtap="clearfinished" wx:if="{{ clearSetting }}">清空所有已完成</text>
+      <text class="btn" wx:if="{{ todos.length > leftCount }}" bindtap="clearFinished" wx:if="{{ clearSetting }}">清空所有已完成</text>
     </view>
   </block>
   <block wx:else>

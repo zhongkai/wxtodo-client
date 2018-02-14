@@ -16,9 +16,9 @@ Page({
     var todos = wx.getStorageSync('todos');
     if (todos) {
       var leftCount = todos.filter(function (item) {
-        return !item.finished
+        return !item.finished;
       }).length;
-      this.setData({ todos: todos, leftCount: leftCount });
+      this.setData({ todos: todos, leftCount: leftCount, allFinished: !leftCount });
     }
 
     var allSetting = wx.getStorageSync('allSetting');
@@ -67,37 +67,39 @@ Page({
     var todos = this.data.todos;
     var todo = todos[index];
     todo.finished = !todo.finished;
+    var leftCount = this.data.leftCount + (todo.finished ? -1 : 1);
     this.setData({
       todos: todos,
-      leftCount: this.data.leftCount + (todo.finished ? -1 : 1)
+      leftCount: leftCount,
+      allFinished: !leftCount
     });
     this.save();
     getApp().writeHistory(todo, todo.finished ? 'finish' : 'restart', +new Date());
   },
 
   toggleAll: function (e) {
-    this.data.allFinished = !this.data.allFinished
-    var todos = this.data.todos
-    for (var i = todos.length - 1; i >= 0; i--) {
-      todos[i].finished = this.data.allFinished;
-    }
+    var allFinished = !this.data.allFinished;
+    var todos = this.data.todos.map(function(todo) {
+      todo.finished = allFinished;
+      return todo;
+    });
     this.setData({
       todos: todos,
-      leftCount: this.data.allFinished ? 0 : todos.length
+      leftCount: allFinished ? 0 : todos.length,
+      allFinished: allFinished
     })
     this.save();
-    getApp().writerHistory(null, this.data.allFinished ? 'finishAll' : 'restartAll', +new Date());
+    getApp().writeHistory(null, allFinished ? 'finishAll' : 'restartAll', +new Date());
   },
   
   clearFinished: function (e) {
-    var todos = this.data.todos
-    var remains = []
-    for (var i = 0; i < todos.length; i++) {
-      todos[i].finished || remains.push(todos[i]);
-    }
+    var todos = this.data.todos;
+    var remains = todos.filter(function(todo) {
+      return !todo.finished;
+    });
     this.setData({ todos: remains });
     this.save();
-    getApp().writerHistory(null, 'clear', +new Date());
+    getApp().writeHistory(null, 'clear', +new Date());
   },
 
   createItem: function (e) {
