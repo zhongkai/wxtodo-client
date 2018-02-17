@@ -2,10 +2,13 @@
   padding: 20rpx 0;
   border-bottom: 1rpx solid #DDD;
   font-size: 30rpx;
+  color: #9B9B9B;
 }
 
-.section input {
-  color: #9B9B9B;
+.section textarea {
+  width: 670rpx;
+  padding: 25rpx 20rpx;
+  background: #EEE;
 }
 
 .tags {

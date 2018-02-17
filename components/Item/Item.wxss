@@ -1,9 +1,12 @@
 /* components/Item/Item.wxss */
+
+.item-container {
+  padding: 25rpx;
+}
+
 .item {
   display: flex;
   align-items: center;
-  padding: 25rpx;
-  border-bottom: 1rpx solid #DDD;
 }
 
 .item:last-child {
@@ -18,6 +21,10 @@
   flex: 1;
   font-size: 30rpx;
   color: #9B9B9B;
+}
+
+.item icon {
+  margin-left: 10rpx;
 }
 
 .item.finished .content {
@@ -45,4 +52,14 @@
 
 .item.finished .tag {
   color: #DDD;
+}
+
+.extra-detail {
+  padding: 15rpx 5px 0;
+  font-size: 28rpx;
+  color: #9B9B9B;
+}
+
+.extra-detail textarea {
+  width: 650rpx;
 }

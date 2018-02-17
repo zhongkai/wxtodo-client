@@ -19,7 +19,8 @@ App({
     history.push({
       todo: todo ? {
         content: todo.content || '',
-        tags: todo.tags || []
+        tags: todo.tags || [],
+        extra: todo.extra || ''
       } : null,
       action: action,
       timestamp: timestamp

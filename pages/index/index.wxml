@@ -11,7 +11,9 @@
   <block wx:if="{{ todos.length }}">
     <view class="todos">
       <block wx:for="{{ todos }}" wx:key="{{ index }}">
-        <item binditemremove="onItemRemove" content="{{ item.content }}" tags="{{ item.tags }}" finished="{{ item.finished }}" bindtap="toggleTodo" data-index="{{ index }}"/>
+        <item binditemremove="onItemRemove" tags="{{ item.tags }}" extra="{{ item.extra }}" finished="{{ item.finished }}" bindtap="toggleTodo" data-index="{{ index }}">
+          <text>{{ item.content }}</text>
+        </item>
       </block>
     </view>
     <view class="footer">

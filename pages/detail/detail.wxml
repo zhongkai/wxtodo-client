@@ -12,5 +12,9 @@
     <input placeholder="添加标签..." value="{{ tag }}" bindconfirm="addTag" wx:if="{{ tags.length < 3 }}"/>
     <input value="最多添加三个标签" disabled wx:if="{{ tags.length >= 3 }}"/>
   </view>
+  <view class="section">
+    <text>备注：</text>
+    <textarea bindinput="inputExtra" auto-height="true" />
+  </view>
   <button type="primary" bindtap="create"> 创 建 </button>
 </view>

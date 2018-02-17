@@ -14,7 +14,9 @@
             <block wx:else>
               <view class="action-icon {{ item.action }}">{{ actionTexts[item.action] }}</view>
             </block>
-            <item class="todo" content="{{ item.todo.content }}" tags="{{ item.todo.tags }}" action="{{ item.action }}" data-pos="{{ item.pos }}" binditemremove="onItemRemove"/>
+            <item class="todo" tags="{{ item.todo.tags }}" action="{{ item.action }}" data-pos="{{ item.pos }}" binditemremove="onItemRemove">
+              <text>{{ item.todo.content }}</text>
+            </item>
           </block>
           <block wx:else>
             <view class="action {{ item.action }}">{{ actionTexts[item.action] }}</view>

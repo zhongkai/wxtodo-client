@@ -2,11 +2,16 @@ Page({
   data: {
     content: '',
     tag: '',
-    tags: []
+    tags: [],
+    extra: ''
   },
 
   inputContent: function(e) {
     this.setData({ content: e.detail.value.trim() });
+  },
+
+  inputExtra: function (e) {
+    this.setData({ extra: e.detail.value.trim() });
   },
 
   addTag: function (e) {
@@ -34,7 +39,8 @@ Page({
     var todos = wx.getStorageSync('todos') || [];
     var todo = {
       content: this.data.content,
-      tags: this.data.tags
+      tags: this.data.tags,
+      extra: this.data.extra
     };
     todos.push(todo);
     wx.setStorageSync('todos', todos);
