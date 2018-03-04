@@ -42,20 +42,20 @@ Page({
       mask: true
     });
 
+    var todo = {
+      content: this.data.content,
+      tags: this.data.tags,
+      extra: this.data.extra
+    };
+
     getApp().request({
-      method: 'post',
-      data: {
-        content: this.data.content,
-        tags: this.data.tags,
-        extra: this.data.extra
-      },
+      url: '/todos',
+      method: 'POST',
+      data: todo,
       success: function() {
         wx.hideLoading();
         getApp().writeHistory(todo, 'create', +new Date());
         wx.navigateBack();
-      },
-      fail: function(res) {
-        console.info(res);
       }
     });
     
