@@ -1,3 +1,5 @@
+var config = require('../../config');
+
 Page({
 
   data: {
@@ -5,25 +7,37 @@ Page({
     name: ''
   },
 
-  onLoad: function () {
-    this.setData({
-      avatar: wx.getStorageSync('avatar') || 'https://yunlaiwu0.cn-bj.ufileos.com/teacher_avatar.png',
-      name: wx.getStorageSync('name') || ''
-    });
-  },
-
-  blurName: function(e) {
-    this.setData({ name: wx.getStorageSync('name') });
+  onShow: function () {
+    this.setData(getApp().globalData.userInfo);
   },
 
   changeName: function(e) {
     var name = e.detail.value.trim();
+    var that = this;
 
     if(name) {
-      wx.setStorageSync('name', name);
+
+      wx.showLoading({
+        title: '更新用户信息',
+        mask: true
+      });
+      
+      getApp().request({
+        url: '/user',
+        method: 'patch',
+        data: {
+          name: name
+        },
+        success: function() {
+          wx.hideLoading();
+          that.data.name = name;
+        }
+      });
     }
     else {
-      this.data.name = wx.getStorageSync('name');
+      this.setData({
+        name: this.data.name
+      });
     }
 
   },
@@ -34,16 +48,37 @@ Page({
     
     wx.chooseImage({
       success: function (res) {
-        var tempFilePaths = res.tempFilePaths;
-        wx.saveFile({
-          tempFilePath: tempFilePaths[0],
-          success: function (res) {
-            var savedFilePath = res.savedFilePath;
-            wx.setStorageSync('avatar', savedFilePath);
-            that.setData({avatar: savedFilePath});
+
+        wx.showLoading({
+          title: '更新用户信息',
+          mask: true
+        });
+
+        wx.uploadFile({
+          header: {
+            skey: wx.getStorageSync('skey')
+          },
+          url: config.host + '/user/avatar',
+          filePath: res.tempFilePaths[0],
+          name: 'avatar',
+          success: function(res) {
+            console.info(res);
+            getApp().request({
+              url: '/user',
+              method: 'patch',
+              data: {
+                avatar: res.data
+              },
+              success: function () {
+                wx.hideLoading();
+                that.setData({ avatar: res.data });
+              }
+            });
+
           }
         });
+        
       }
-    })
+    });
   }
 })

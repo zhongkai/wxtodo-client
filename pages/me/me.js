@@ -6,12 +6,7 @@ Page({
   },
 
   onShow: function () {
-
-    this.setData({
-      avatar: wx.getStorageSync('avatar') || 'https://yunlaiwu0.cn-bj.ufileos.com/teacher_avatar.png',
-      name: wx.getStorageSync('name') || ''
-    });
-
+    this.setData(getApp().globalData.userInfo);
   },
 
   navTo: function(e) {

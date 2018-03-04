@@ -36,15 +36,28 @@ Page({
       wx.showToast({title: '请填写待办内容~', icon: 'none'});
       return;
     }
-    var todos = wx.getStorageSync('todos') || [];
-    var todo = {
-      content: this.data.content,
-      tags: this.data.tags,
-      extra: this.data.extra
-    };
-    todos.push(todo);
-    wx.setStorageSync('todos', todos);
-    getApp().writeHistory(todo, 'create', +new Date());
-    wx.navigateBack();
+
+    wx.showLoading({
+      title: '正在创建待办事项……',
+      mask: true
+    });
+
+    getApp().request({
+      method: 'post',
+      data: {
+        content: this.data.content,
+        tags: this.data.tags,
+        extra: this.data.extra
+      },
+      success: function() {
+        wx.hideLoading();
+        getApp().writeHistory(todo, 'create', +new Date());
+        wx.navigateBack();
+      },
+      fail: function(res) {
+        console.info(res);
+      }
+    });
+    
   }
 })
