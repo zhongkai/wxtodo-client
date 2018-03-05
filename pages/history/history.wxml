@@ -3,7 +3,7 @@
     <block wx:for="{{ dates }}" wx:key="{{ index }}">
       <view class="date">{{ item }}</view>
       <block wx:for="{{ groupedHistory[item] }}" wx:key="{{ index }}">
-        <view class="history-item" wx:key="{{ index }}">
+        <view class="history-item">
           <block wx:if="{{ item.action == 'create' || item.action == 'finish' || item.action == 'restart' || item.action == 'delete' }}">
             <block wx:if="{{ timeSetting }}">
               <view class="action-with-time">

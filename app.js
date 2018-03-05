@@ -23,7 +23,7 @@ App({
         extra: todo.extra || ''
       } : null,
       action: action,
-      timestamp: timestamp
+      timestamp: timestamp + 24 * 60 * 60 * 1000
     });
     wx.setStorageSync('history', history);
   }

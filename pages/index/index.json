@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "2dos · 待办",
+  "navigationBarTitleText": "wxtodo · 待办",
   "usingComponents": {
     "item": "/components/Item/Item"
   }

@@ -12,6 +12,7 @@ Page({
     });
   },
 
+  //未点完成失去焦点复原（change优先于blur触发）
   blurName: function(e) {
     this.setData({ name: wx.getStorageSync('name') });
   },
@@ -21,9 +22,6 @@ Page({
 
     if(name) {
       wx.setStorageSync('name', name);
-    }
-    else {
-      this.data.name = wx.getStorageSync('name');
     }
 
   },
