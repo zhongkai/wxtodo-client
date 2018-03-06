@@ -36,6 +36,7 @@ Page({
     var index = e.currentTarget.dataset.index;
     var todos = this.data.todos;
     var remove = todos.splice(index, 1)[0];
+    console.info(todos);
     this.setData({
       todos: todos,
       leftCount: this.data.leftCount - (remove.finished ? 0 : 1)
@@ -52,7 +53,7 @@ Page({
     if (!this.data.todo || !this.data.todo.trim()) return;
     var todos = this.data.todos;
     var todo = { content: this.data.todo, finished: false };
-    todos.push({ content: this.data.todo, finished: false });
+    todos.push(todo);
     this.setData({
       todo: '',
       todos: todos,

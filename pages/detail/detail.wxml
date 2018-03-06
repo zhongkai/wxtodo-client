@@ -3,7 +3,7 @@
     <input placeholder="待办内容..." bindinput="inputContent" auto-focus />
   </view>
   <view class="tags" wx:if="{{ tags.length }}">
-    <view class="tag" wx:for="{{ tags }}" wx:key="{{ index }}">
+    <view class="tag" wx:for="{{ tags }}" wx:key="index">
       <text class="txt">{{ item }}</text>
       <icon class="remove" type="clear" size="16" data-index="{{ index }}" bindtap="removeTag"/>
     </view>
