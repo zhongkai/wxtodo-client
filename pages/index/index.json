@@ -1,7 +1,6 @@
 {
-  "navigationBarTitleText": "2dos · 待办",
-  "usingComponents": {
-    "item": "/components/Item/Item"
-  },
-  "enablePullDownRefresh": true
+    "navigationBarTitleText": "wxtodo · 待办",
+    "usingComponents": {
+        "item": "/components/Item/Item"
+    }
 }

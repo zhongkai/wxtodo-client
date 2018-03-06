@@ -9,11 +9,15 @@ Page({
       'restartAll': '重启所有待办事项',
       'finishAll': '完成所有待办事项'
     },
-    timeSetting: false
+    timeSetting: false,
+    history: [],
+    groupedHistory: {},
+    dates: []
   },
 
   onShow: function () {
     var history = wx.getStorageSync('history');
+    console.info(history);
     if (history) {
       this.setData({ history: history });
       this.processHistory();
@@ -23,6 +27,14 @@ Page({
     if (typeof timeSetting == 'boolean') {
       this.setData({ timeSetting: timeSetting });
     }
+  },
+
+  onHide: function() {
+    this.setData({
+      history: [],
+      groupedHistory: {},
+      dates: []
+    });
   },
 
   onItemRemove: function(e) {

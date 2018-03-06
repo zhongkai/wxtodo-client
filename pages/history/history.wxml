@@ -1,9 +1,9 @@
 <view class="container">
   <block wx:if="{{ dates.length }}">
-    <block wx:for="{{ dates }}" wx:key="{{ index }}">
+    <block wx:for="{{ dates }}" wx:key="index">
       <view class="date">{{ item }}</view>
-      <block wx:for="{{ groupedHistory[item] }}" wx:key="{{ index }}">
-        <view class="history-item" wx:key="{{ index }}">
+      <block wx:for="{{ groupedHistory[item] }}" wx:key="index">
+        <view class="history-item">
           <block wx:if="{{ item.action == 'create' || item.action == 'finish' || item.action == 'restart' || item.action == 'delete' }}">
             <block wx:if="{{ timeSetting }}">
               <view class="action-with-time">
@@ -14,8 +14,7 @@
             <block wx:else>
               <view class="action-icon {{ item.action }}">{{ actionTexts[item.action] }}</view>
             </block>
-            <item class="todo" tags="{{ item.todo.tags }}" action="{{ item.action }}" data-pos="{{ item.pos }}" binditemremove="onItemRemove">
-              <text>{{ item.todo.content }}</text>
+            <item class="todo" content="{{ item.todo.content }}" tags="{{ item.todo.tags }}" action="{{ item.action }}" data-pos="{{ item.pos }}" binditemremove="onItemRemove">
             </item>
           </block>
           <block wx:else>

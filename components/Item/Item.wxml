@@ -4,17 +4,17 @@
     <icon class="checkbox" type="{{ finished ? 'success' : 'circle' }}" wx:if="{{ !action }}" />
     <block wx:if="{{ tags.length }}">
       <view class="content-tags">
-        <text class="content"><slot></slot></text>
+        <text class="content">{{ content }}</text>
         <view class="tags">
-          <text class="tag" wx:for="{{ tags }}" wx:key="{{ index }}">{{ item }}</text>
+          <text class="tag" wx:for="{{ tags }}" wx:key="index">{{ item }}</text>
         </view>
       </view>
     </block>
     <block wx:else>
-      <text class="content"><slot></slot></text>
+      <text class="content">{{ content }}</text>
     </block>
-    <icon type="info" size="16" catchtap="toggleExtra" color="{{ collapsed ? '#7ED321' : '#DDD' }}"wx-if="{{ extra }}" />
-    <icon type="clear" size="16" catchtap="removeTodo" data-index="{{ index }}" />
+    <icon type="info" size="16" catchtap="toggleExtra" color="{{ collapsed ? '#7ED321' : '#DDD' }}" wx-if="{{ extra }}" />
+    <icon type="clear" size="16" catchtap="removeTodo" />
   </view>
   <view class="extra-detail" wx-if="{{ !collapsed }}">
     <textarea disabled value="{{ extra }}" auto-height />
