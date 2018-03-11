@@ -10,7 +10,7 @@
   </view>
   <block wx:if="{{ todos.length }}">
     <view class="todos">
-      <item wx:for="{{ todos }}" wx:key="index" binditemremove="onItemRemove" content="{{ item.content }}" tags="{{ item.tags }}" extra="{{ item.extra }}" finished="{{ item.finished }}" bindtap="toggleTodo" data-index="{{ index }}">
+      <item wx:for="{{ todos }}" wx:key="id" binditemremove="onItemRemove" content="{{ item.content }}" tags="{{ item.tags }}" extra="{{ item.extra }}" finished="{{ item.finished }}" bindtap="toggleTodo" data-index="{{ index }}">
       </item>
     </view>
     <view class="footer">

@@ -2,13 +2,24 @@ var config = require('./config');
 
 App({
   onLaunch: function() {
+    console.info('loading app...');
     wx.showLoading({
       title: '登录中',
       mask: true
-    })
-    this.checkLogin();
+    });
   },
-  login: function() {
+  checkLogin: function (cb) {
+    console.info('check login...');
+    var skey = wx.getStorageSync('skey');
+    if (skey) {
+      this.getUserInfo(cb);
+    }
+    else {
+      this.login(cb);
+    }
+  },
+  login: function (cb) {
+    console.info('login...');
     var that = this;
     wx.login({
       success: function (res) {
@@ -19,44 +30,48 @@ App({
             code: res.code
           },
           success: function (res) {
+
             var skey = res.data.skey;
+
+            console.info('already login, skey is', skey);
 
             //如果获取不到skey，则重试
             if(!skey) {
-              that.login();
+              that.login(cb);
               return;
             }
 
             wx.setStorageSync('skey', skey);
-            that.getUserInfo();
+            that.getUserInfo(cb);
           }
         })
       }
     });
   },
-  getUserInfo: function() {
+  getUserInfo: function (cb) {
     var that = this;
     this.request({
       url: '/user',
       success: function (res) {
         // 未登录
         if (res.statusCode === 401) {
-          that.login();
+          that.login(cb);
         }
         else {
           // 未注册用户
           if (res.statusCode === 400) {
-            that.registerUser();
+            that.registerUser(cb);
           }
           else {
             that.globalData.userInfo = res.data;
             wx.hideLoading();
+            cb();
           }
         }
       }
     });
   },
-  registerUser: function() {
+  registerUser: function (cb) {
     var that = this;
     wx.getUserInfo({
       success: function (res) {
@@ -72,6 +87,7 @@ App({
           success: function (res) {
             that.globalData.userInfo = userInfo;
             wx.hideLoading();
+            cb();
           }
         });
       },
@@ -81,21 +97,13 @@ App({
           url: '/user',
           method: 'post',
           data: that.globalData.userInfo,
-          success: function (res) {
+          success: function () {
+            cb();
             wx.hideLoading();
           }
         });
       }
     })
-  },
-  checkLogin: function() {
-    var skey = wx.getStorageSync('skey');
-    if(skey) {
-      this.getUserInfo();
-    }
-    else {
-      this.login();
-    }
   },
   writeHistory: function (todo, action, timestamp) {
     var history = wx.getStorageSync('history') || [];

@@ -27,13 +27,13 @@ Component({
     collapsed: true
   },
 
-  attached: function() {
-    console.log('component attached!');
-  },
+  // attached: function() {
+  //   console.log('component attached!');
+  // },
 
-  detached: function() {
-    console.log('component dettached!');
-  },
+  // detached: function() {
+  //   console.log('component dettached!');
+  // },
 
   methods: {
     removeTodo: function () {

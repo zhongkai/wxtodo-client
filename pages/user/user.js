@@ -30,6 +30,7 @@ Page({
         },
         success: function() {
           wx.hideLoading();
+          getApp().globalData.userInfo.name = name;
           that.data.name = name;
         }
       });
@@ -62,7 +63,6 @@ Page({
           filePath: res.tempFilePaths[0],
           name: 'avatar',
           success: function(res) {
-            console.info(res);
             getApp().request({
               url: '/user',
               method: 'patch',
@@ -71,6 +71,7 @@ Page({
               },
               success: function () {
                 wx.hideLoading();
+                getApp().globalData.userInfo.avatar = res.data;
                 that.setData({ avatar: res.data });
               }
             });

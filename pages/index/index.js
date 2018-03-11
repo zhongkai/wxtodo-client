@@ -8,19 +8,25 @@ Page({
     clearSetting: true
   },
 
-  onShow: function () {
-    
-    this.load();
+  onLoad: function() {
 
-    var allSetting = wx.getStorageSync('allSetting');
-    if(typeof allSetting == 'boolean') {
-      this.setData({ allSetting: allSetting});
-    }
+    console.info('loading index...');
 
-    var clearSetting = wx.getStorageSync('clearSetting');
-    if (typeof clearSetting == 'boolean') {
-      this.setData({ clearSetting: clearSetting });
-    }
+    var that = this;
+    getApp().checkLogin(function() {
+
+      that.load();
+
+      var allSetting = wx.getStorageSync('allSetting');
+      if (typeof allSetting == 'boolean') {
+        that.setData({ allSetting: allSetting });
+      }
+
+      var clearSetting = wx.getStorageSync('clearSetting');
+      if (typeof clearSetting == 'boolean') {
+        that.setData({ clearSetting: clearSetting });
+      }
+    });
   },
 
   onPullDownRefresh: function() {
