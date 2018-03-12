@@ -10,8 +10,7 @@
   </view>
   <block wx:if="{{ todos.length }}">
     <view class="todos">
-      <item wx:for="{{ todos }}" wx:key="index" binditemremove="onItemRemove" content="{{ item.content }}" tags="{{ item.tags }}" extra="{{ item.extra }}" finished="{{ item.finished }}" bindtap="toggleTodo" data-index="{{ index }}">
-      </item>
+      <item wx:for="{{ todos }}" wx:key="id" binditemremove="onItemRemove" content="{{ item.content }}" tags="{{ item.tags }}" extra="{{ item.extra }}" finished="{{ item.finished }}" bindtap="toggleTodo" data-index="{{ index }}"></item>
     </view>
     <view class="footer">
       <text class="btn" bindtap="toggleAll"  wx:if="{{ allSetting }}">{{ allFinished ? '全部重启' : '全部完成' }}</text>
