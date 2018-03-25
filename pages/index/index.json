@@ -1,5 +1,6 @@
 {
     "navigationBarTitleText": "wxtodo · 待办",
+    "enablePullDownRefresh": true,
     "usingComponents": {
         "item": "/components/Item/Item"
     }

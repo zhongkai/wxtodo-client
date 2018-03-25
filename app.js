@@ -71,6 +71,9 @@ App({
       }
     });
   },
+
+  //注册用户
+  //在User表中添加记录
   registerUser: function (cb) {
     var that = this;
     wx.getUserInfo({
@@ -86,8 +89,8 @@ App({
           data: userInfo,
           success: function (res) {
             that.globalData.userInfo = userInfo;
-            wx.hideLoading();
             cb();
+            wx.hideLoading();
           }
         });
       },
@@ -105,6 +108,8 @@ App({
       }
     })
   },
+
+  //全局历史记录写入
   writeHistory: function (todo, action, timestamp) {
     var history = wx.getStorageSync('history') || [];
     history.push({
@@ -118,6 +123,8 @@ App({
     });
     wx.setStorageSync('history', history);
   },
+
+  //封装wx.request，自动添加host以及API版本号
   request: function(obj) {
     var skey = wx.getStorageSync('skey');
     obj.url = config.host + obj.url;
@@ -127,6 +134,8 @@ App({
     };
     return wx.request(obj);
   },
+
+  //全局数据维护
   globalData: {
     //默认值
     userInfo: {

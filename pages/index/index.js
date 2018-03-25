@@ -5,7 +5,8 @@ Page({
     leftCount: 1,
     allFinished: false,
     allSetting: true,
-    clearSetting: true
+    clearSetting: true,
+    hasLoaded: false
   },
 
   onLoad: function() {
@@ -29,6 +30,13 @@ Page({
     });
   },
 
+  onShow: function() {
+    if(this.data.hasLoaded) {
+      this.load();
+    }
+    this.data.hasLoaded = true;
+  },
+
   onPullDownRefresh: function() {
     this.load();
   },
@@ -42,7 +50,16 @@ Page({
     getApp().request({
       url: '/todos/' + remove.id,
       method: 'delete',
-      success: function() {
+      success: function(res) {
+
+        if (res.statusCode !== 204) {
+          wx.showToast({
+            icon: 'none',
+            title: '请求出错'
+          });
+          return;
+        }
+        
         that.setData({
           todos: todos,
           leftCount: that.data.leftCount - (remove.finished ? 0 : 1)
@@ -65,6 +82,16 @@ Page({
     getApp().request({
       url: '/todos',
       success: function (res) {
+        wx.hideLoading();
+
+        if (res.statusCode !== 200) {
+          wx.showToast({
+            icon: 'none',
+            title: '请求出错'
+          });
+          return;
+        }
+
         var todos = res.data.map(function(todo) {
           todo.finished = todo.status == 1;
           todo.tags = [todo.tag1, todo.tag2, todo.tag3].filter(function(tagContent) {
@@ -76,7 +103,7 @@ Page({
           return item.status == 0;
         }).length;
         that.setData({ todos: todos, leftCount: leftCount, allFinished: !leftCount });
-        wx.hideLoading();
+        
       }
     });
   },
@@ -96,8 +123,17 @@ Page({
       data: {
         content: this.data.todo
       },
-      success: function(result) {
-        var todo = { id: result.data[0], content: that.data.todo, finished: false };
+      success: function(res) {
+
+        if (res.statusCode !== 200) {
+          wx.showToast({
+            icon: 'none',
+            title: '请求出错'
+          });
+          return;
+        }
+
+        var todo = { id: res.data.id, content: that.data.todo, finished: false };
         todos.push(todo);
         that.setData({
           todo: '',
@@ -122,7 +158,16 @@ Page({
       data: {
         status: todo.finished ? 0 : 1
       },
-      success: function() {
+      success: function(res) {
+
+        if (res.statusCode !== 200) {
+          wx.showToast({
+            icon: 'none',
+            title: '请求出错'
+          });
+          return;
+        }
+        
         todo.finished = !todo.finished;
         var leftCount = that.data.leftCount + (todo.finished ? -1 : 1);
         that.setData({
@@ -153,7 +198,16 @@ Page({
           status: allFinished ? 1 : 0
         }
       },
-      success: function () {
+      success: function (res) {
+
+        if(res.statusCode !== 200) {
+          wx.showToast({
+            icon: 'none',
+            title: '请求出错'
+          });
+          return;
+        }
+
         var todos = that.data.todos.map(function(todo) {
           todo.finished = allFinished;
           return todo;
@@ -183,7 +237,14 @@ Page({
         action: 'delete',
         items: finished.map(function(todo){ return todo.id; })
       },
-      success: function() {
+      success: function(res) {
+        if (res.statusCode !== 200) {
+          wx.showToast({
+            icon: 'none',
+            title: '请求出错'
+          });
+          return;
+        }
         var remains = todos.filter(function (todo) {
           return !todo.finished;
         });
