@@ -32,7 +32,7 @@ App({
       success: function (res) {
         // 登录请求
         wx.request({
-          url: 'https://i4wt4wyj.qcloud.la/login',
+          url: config.host + '/login',
           data: {
             code: res.code
           },
